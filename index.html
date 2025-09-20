@@ -5,129 +5,272 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Window Service and Software Ltd</title>
   <style>
+    /* General styles */
     body {
       font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
       line-height: 1.6;
-      background: #f8f9fa;
+      background: #f0f4f8;
       color: #333;
+      scroll-behavior: smooth;
     }
     header {
-      background: #0a3d62;
+      background: linear-gradient(90deg, #0a3d62, #1e3799);
       color: #fff;
-      padding: 20px;
+      padding: 30px 20px;
       text-align: center;
     }
     header h1 {
       margin: 0;
-      font-size: 2.2rem;
+      font-size: 2.5rem;
     }
     header p {
-      font-size: 1.1rem;
+      font-size: 1.2rem;
+      margin-top: 10px;
     }
+
+    /* Navigation */
     nav {
       background: #1e3799;
       text-align: center;
-      padding: 10px;
+      padding: 15px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
     nav a {
       color: #fff;
       text-decoration: none;
-      margin: 0 15px;
+      margin: 0 20px;
       font-weight: bold;
+      font-size: 1rem;
+      transition: color 0.3s;
     }
+    nav a:hover {
+      color: #ffdd59;
+    }
+
+    /* Section styles */
     section {
-      padding: 40px 20px;
-      max-width: 1000px;
+      padding: 60px 20px;
+      max-width: 1200px;
       margin: auto;
     }
-    h2 {
+    section h2 {
+      text-align: center;
       color: #0a3d62;
-      border-bottom: 2px solid #0a3d62;
-      padding-bottom: 5px;
+      font-size: 2rem;
+      margin-bottom: 40px;
+      position: relative;
     }
-    ul {
-      list-style: none;
-      padding: 0;
+    section h2::after {
+      content: "";
+      width: 60px;
+      height: 3px;
+      background: #ff4757;
+      display: block;
+      margin: 10px auto 0 auto;
+      border-radius: 2px;
     }
-    ul li {
-      background: #fff;
-      margin: 8px 0;
-      padding: 12px;
-      border-radius: 6px;
-      box-shadow: 0px 2px 5px rgba(0,0,0,0.1);
+
+    /* Services section */
+    .services-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
     }
+    .service-card {
+      background: #ffffff;
+      width: 280px;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.5s, opacity 0.5s;
+      opacity: 0; /* Hidden initially for animation */
+      transform: translateY(50px);
+    }
+    .service-card img {
+      width: 80px;
+      margin-bottom: 15px;
+    }
+    .service-card h3 {
+      color: #0a3d62;
+      margin-bottom: 10px;
+    }
+    .service-card p {
+      color: #555;
+      font-size: 0.95rem;
+    }
+    .service-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+    .service-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Products section */
+    .products-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+    }
+    .product-card {
+      background: #ffffff;
+      width: 250px;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .product-card img {
+      width: 80px;
+      margin-bottom: 10px;
+    }
+    .product-card h4 {
+      color: #1e3799;
+      margin-bottom: 8px;
+    }
+    .product-card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    }
+
+    /* Contact section */
     .contact a {
       display: inline-block;
-      margin: 10px;
-      padding: 12px 20px;
-      background: #1e3799;
+      margin: 10px 15px;
+      padding: 12px 25px;
+      background: #ff4757;
       color: white;
-      border-radius: 5px;
+      border-radius: 8px;
       text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s;
     }
+    .contact a:hover {
+      background: #ff6b81;
+    }
+
+    /* Footer */
     footer {
       text-align: center;
       background: #0a3d62;
       color: white;
-      padding: 15px;
-      margin-top: 20px;
+      padding: 20px;
+      margin-top: 30px;
+    }
+
+    /* Responsive */
+    @media(max-width: 768px) {
+      .services-container, .products-container {
+        flex-direction: column;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
+
+  <!-- Header -->
   <header>
     <h1>Window Service and Software Ltd</h1>
-    <p>Customized Desktop CPUs | Laptop & Desktop Services | Website Development</p>
+    <p>Customized Desktop CPUs | Laptop & Desktop Services | Web Creations & Hosting</p>
   </header>
 
+  <!-- Navigation -->
   <nav>
     <a href="#services">Services</a>
     <a href="#products">Products</a>
     <a href="#contact">Contact</a>
   </nav>
 
-  <section id="services">
+  <!-- Services Section -->
+  <section id="services" style="background: #e0f7fa;">
     <h2>Our Services</h2>
-    <ul>
-      <li>Laptop & Desktop Repair</li>
-      <li>OS & Software Installation</li>
-      <li>Virus Removal & Data Recovery</li>
-      <li>PC Assembling & Upgrades</li>
-      <li>Customized Desktop Builds</li>
-      <li>
-        🌐 Website Development & Design
-        <p style="margin: 5px 0 0 15px; font-size: 0.9rem; color: #555;">
-          We create modern, responsive, and SEO-friendly websites for businesses, portfolios, and online shops.
-        </p>
-      </li>
-    </ul>
+    <div class="services-container">
+      <div class="service-card" data-animate="fade-up">
+        <img src="https://img.icons8.com/color/96/000000/web-design.png" alt="Web Creation">
+        <h3>Web Creations & Hosting</h3>
+        <p>We craft unique, responsive websites and provide reliable hosting solutions for businesses, portfolios, and online stores.</p>
+      </div>
+
+      <div class="service-card" data-animate="fade-up">
+        <img src="https://img.icons8.com/color/96/000000/laptop.png" alt="Laptop Repair">
+        <h3>Laptop & Desktop Repair</h3>
+        <p>Fast and reliable repair services for all laptops and desktops, including hardware and software issues.</p>
+      </div>
+
+      <div class="service-card" data-animate="fade-up">
+        <img src="https://img.icons8.com/color/96/000000/software.png" alt="Software Installation">
+        <h3>OS & Software Installation</h3>
+        <p>We install and configure operating systems, drivers, and all types of software for smooth performance.</p>
+      </div>
+
+      <div class="service-card" data-animate="fade-up">
+        <img src="https://img.icons8.com/color/96/000000/virus.png" alt="Virus Removal">
+        <h3>Virus Removal & Data Recovery</h3>
+        <p>Remove viruses, malware, and recover lost or corrupted data efficiently and safely.</p>
+      </div>
+
+      <div class="service-card" data-animate="fade-up">
+        <img src="https://img.icons8.com/color/96/000000/cpu.png" alt="PC Assembly">
+        <h3>PC Assembling & Upgrades</h3>
+        <p>We build custom PCs and upgrade existing systems for better performance and reliability.</p>
+      </div>
+
+      <div class="service-card" data-animate="fade-up">
+        <img src="https://img.icons8.com/color/96/000000/desktop.png" alt="Customized PC">
+        <h3>Customized Desktop Builds</h3>
+        <p>Tailor-made desktop PCs designed for gaming, office work, or high-performance tasks.</p>
+      </div>
+    </div>
   </section>
 
+  <!-- Products Section -->
   <section id="products">
     <h2>Products We Offer</h2>
-    <h3>Customized Desktop CPUs</h3>
-    <ul>
-      <li>Gaming PCs</li>
-      <li>Office PCs</li>
-      <li>Student PCs</li>
-      <li>High-Performance PCs</li>
-    </ul>
+    <div class="products-container">
+      <div class="product-card">
+        <img src="https://img.icons8.com/color/96/000000/pc.png" alt="Gaming PC">
+        <h4>Gaming PCs</h4>
+        <p>High-performance PCs built for smooth gaming experience.</p>
+      </div>
 
-    <h3>Individual Parts Available</h3>
-    <ul>
-      <li>💾 Storage – SSDs (SATA/NVMe), HDDs</li>
-      <li>🧠 Memory (RAM) – DDR3, DDR4, DDR5</li>
-      <li>🖥️ Motherboards – Intel & AMD</li>
-      <li>⚡ Power Supplies (SMPS)</li>
-      <li>🎮 Graphics Cards (GPU)</li>
-      <li>🌀 Cabinets & Cooling Fans</li>
-      <li>🎤 Accessories – Keyboard, Mouse, Monitor</li>
-    </ul>
+      <div class="product-card">
+        <img src="https://img.icons8.com/color/96/000000/office.png" alt="Office PC">
+        <h4>Office PCs</h4>
+        <p>Reliable desktops for business and office work.</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://img.icons8.com/color/96/000000/student.png" alt="Student PC">
+        <h4>Student PCs</h4>
+        <p>Affordable and efficient PCs for students and learning purposes.</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://img.icons8.com/color/96/000000/ssd.png" alt="Storage">
+        <h4>Storage & Memory</h4>
+        <p>SSDs, HDDs, RAM – upgrade your system’s storage and performance.</p>
+      </div>
+
+      <div class="product-card">
+        <img src="https://img.icons8.com/color/96/000000/motherboard.png" alt="Motherboards">
+        <h4>Motherboards & GPUs</h4>
+        <p>High-quality Intel & AMD motherboards and graphics cards for all builds.</p>
+      </div>
+    </div>
   </section>
 
-  <section id="contact" class="contact">
+  <!-- Contact Section -->
+  <section id="contact" class="contact" style="background: #ffeaa7; padding: 50px 20px;">
     <h2>Contact Us</h2>
     <p>📞 Phone/WhatsApp: <a href="tel:+919611733270">+91 96117 33270</a></p>
     <p>✉️ Email: <a href="mailto:vaibhavvk9611@gmail.com">vaibhavvk9611@gmail.com</a></p>
@@ -136,8 +279,28 @@
     <a href="mailto:vaibhavvk9611@gmail.com">Send Email</a>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Window Service and Software Ltd | All Rights Reserved</p>
   </footer>
+
+  <!-- JavaScript for Scroll Animation -->
+  <script>
+    const cards = document.querySelectorAll('.service-card');
+
+    function showCards() {
+      const triggerBottom = window.innerHeight / 5 * 4;
+      cards.forEach(card => {
+        const cardTop = card.getBoundingClientRect().top;
+        if(cardTop < triggerBottom) {
+          card.classList.add('visible');
+        }
+      });
+    }
+
+    window.addEventListener('scroll', showCards);
+    window.addEventListener('load', showCards);
+  </script>
+
 </body>
 </html>
